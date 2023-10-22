@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/TabbedMenu/TabbedMenu.uss?fileID=7433441132597879392&amp;guid=dcc6f6b7ec2474aa1b167b0c5dbbe126&amp;type=3#TabbedMenu" />
+    <ui:VisualElement name="tabs" style="flex-grow: 1;">
+        <ui:Label tabindex="-1" text="London" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LondonTab" class="tab currentlySelectedTab" />
+        <ui:Label tabindex="-1" text="Paris" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ParisTab" class="tab" />
+        <ui:Label tabindex="-1" text="Ottawa" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OttawaTab" class="tab" />
+    </ui:VisualElement>
+    <ui:VisualElement name="tabContent" style="flex-grow: 1;">
+        <ui:Label tabindex="-1" text="London is the capital city of England" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LondonContent" />
+        <ui:Label tabindex="-1" text="Paris is the capital of France" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ParisContent" class="unselectedContent" />
+        <ui:Label tabindex="-1" text="Ottawa is the capital of Canada" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OttawaContent" class="unselectedContent" />
+    </ui:VisualElement>
+</ui:UXML>
