@@ -36,7 +36,7 @@ public class ScoreController : MonoBehaviour
     public void SliderChange()
     {
         slider.value += 1;
-        txtScore.text = slider.value.ToString();
+        txtScore.text = slider.value.ToString("0");
     }
 
     private void ScoreChange(float value)
