@@ -1,9 +1,7 @@
-using System;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class TabController : MonoBehaviour
 {
@@ -12,8 +10,6 @@ public class TabController : MonoBehaviour
     [SerializeField] private Image tab1Content;
     [SerializeField] private Image tab2Content;
     [SerializeField] private Image itemTemplate;
-    [SerializeField] private Slider slider;
-    [SerializeField] private TextMeshProUGUI txtScore;
     [SerializeField] private ScrollRect scrollRects;
     [SerializeField] private GridLayoutGroup gridLayoutGroup;
     [SerializeField] private TextMeshProUGUI txtSelectedName;
@@ -27,6 +23,7 @@ public class TabController : MonoBehaviour
         btnTab1.onClick.AddListener(Tab1Click);
         btnTab2.onClick.RemoveAllListeners();
         btnTab2.onClick.AddListener(Tab2Click);
+        scrollRects.horizontal = false;
     }
 
     // Update is called once per frame
@@ -66,13 +63,6 @@ public class TabController : MonoBehaviour
         {
             txtSelectedName.text = string.Empty;
             txtSelectedScore.text = string.Empty;
-            var score = slider.value;
-            if (score != 0)
-            {
-                AddScores(score);
-                slider.value = 0.0f;
-                txtScore.text = "0";
-            }
             SetLeaderBoard();
         }
         tab1Content.gameObject.SetActive(isShow);
@@ -80,15 +70,7 @@ public class TabController : MonoBehaviour
 
     private void ShowHideTab2Content(bool isShow)
     {
-        if (isShow)
-        {
-        }
         tab2Content.gameObject.SetActive(isShow);
-    }
-
-    private void AddScores(float score)
-    {
-        ScoreController.Scores.Add(Guid.NewGuid().ToString("n").Substring(0, 6), score);
     }
 
     private void SetLeaderBoard()
@@ -121,13 +103,13 @@ public class TabController : MonoBehaviour
                 var btn = comp.transform.Find("Button").GetComponent<Button>();
                 no.text = $"{s.i + 1}";
                 name.text = s.v.Key;
-                score.text = s.v.Value.ToString();
+                score.text = s.v.Value.ToString("0");
                 btn.onClick.AddListener(delegate { ItemClick(obj, no, name, score); });
             }
             obj.gameObject.SetActive(true);
             obj.transform.SetParent(gridLayoutGroup.transform, false);
         }
-        var totalItems = gridLayoutGroup.transform.childCount;
+        var totalItems = topRank.Count;
         var newContentHeight = itemHight * totalItems + spacingY * totalItems;
         scrollRects.content.sizeDelta = new Vector2(scrollRects.content.sizeDelta.x, newContentHeight);
         scrollRects.content.anchoredPosition = new Vector3(scrollRects.content.anchoredPosition.x, newContentHeight * 0.5f);
