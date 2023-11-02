@@ -24,6 +24,7 @@ public class CategoryController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        itemTemp.gameObject.SetActive(false);
         foreach (var item in categoryScriptableObject.Categories)
         {
             var obj = Instantiate(itemTemp);
