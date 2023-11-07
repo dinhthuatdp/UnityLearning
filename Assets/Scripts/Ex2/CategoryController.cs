@@ -62,6 +62,8 @@ public class CategoryController : MonoBehaviour
         }
         prevSelectedCategory.transform.GetComponent<Outline>().enabled = false;
         prevSelectedCategory = item;
+        prevSelectedChapter = null;
+        prevSelectedDoKho = null;
     }
 
     private void OnClickChapter(Image item, string category, string chapter)
@@ -79,6 +81,7 @@ public class CategoryController : MonoBehaviour
         }
         prevSelectedChapter.transform.GetComponent<Outline>().enabled = false;
         prevSelectedChapter = item;
+        prevSelectedDoKho = null;
     }
 
     private void OnClickDoKho(Image item)
